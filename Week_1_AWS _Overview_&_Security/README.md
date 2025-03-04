@@ -5,14 +5,16 @@ This application will be built in a private network using Amazon Virtual Private
 
 We will use Amazon CloudWatch for monitoring and ensure our application is scalable and fault-tolerant by adding Amazon Elastic Load Balancing and Amazon EC2 Auto Scaling to the diagram. For security and identity management, we will use Amazon Identity and Access Management (IAM). Let's add that too.
 
-
-<img src="images/web_diagram.png" width="500px">
-
+<div style="text-align: center;">
+    <img src="images/web_diagram.png" width="800px">
+</div>
 
 ## Availability Zones (AZs) and Regions
 In AWS, Availability Zones (AZs) and Regions are fundamental concepts for building resilient and scalable applications.
 
-<img src="images/AZ_Region.png" alt="AZ-Region" width="500px">
+<div style="text-align: center;">
+    <img src="images/AZ_Region.png" alt="AZ-Region" width="800px">
+</div>
 
 * Regions: Definition: A Region is a geographical area that contains multiple, isolated locations known as Availability Zones.
 Purpose: Regions allow you to deploy applications closer to your users to reduce latency and meet regulatory requirements.
@@ -22,32 +24,30 @@ Example: `us-east-1` (Northern Virginia), `eu-west-1` (Ireland).
 Purpose: AZs provide high availability and fault tolerance. By deploying applications across multiple AZs, you can ensure that your application remains available even if one AZ fails.
 Example: `us-east-1a`, `us-east-1b`, `us-east-1c` (all within the us-east-1 Region).
 
-
 ### How to choose your region?
 1. Restrictions and Compliance
 2. Latency
 3. Pricing
 4. Service availability
 
-
 ## Ways to interact with the AWS API (Application Program Interface)
 1. AWS Management Console
 2. AWS Command Line Interface (CLI)
 3. [AWS Software Development Kits (SDKs)](https://aws.amazon.com/developer/tools/): it works with Python!
 
-
 ## Security and the AWS Shared Responsibility Model
 
 When you begin working with the AWS Cloud, managing security and compliance is a shared responsibility between AWS and you.
 
-<img src="images/shared_security_model.png" width="500px">
-
+<div style="text-align: center;">
+    <img src="images/shared_security_model.png" width="800px">
+</div>
 
 You’re responsible for security in the cloud. So for our EC2 example, you are responsible for tasks like patching the operating systems of your VMs, encrypting data in transit and at rest, configuring firewalls and controlling who has access to these resources and how much access they have.
 
 ### Protect the AWS Root User
 
-Use a MFA to control acess to specific AWS service APIs.
+Use a MFA to control access to specific AWS service APIs.
 
 The current content focuses on **authentication** and **authorization** in the context of AWS:
 
@@ -61,10 +61,8 @@ The current content focuses on **authentication** and **authorization** in the c
 
 - **Best Practices**: Recommendations include using strong passwords, enabling MFA, and managing access keys securely.
 
-
-
 ## AWS Identity and Access Management
-  
+
 **AWS Identity and Access Management (IAM)**, which is a web service that allows you to manage access to your AWS account and resources. Here are the key points:
 
 * **IAM Overview:**
@@ -83,13 +81,14 @@ The current content focuses on **authentication** and **authorization** in the c
     * Policies are JSON documents that define permissions for users, groups, and roles.
     * Policies can allow or deny specific actions on resources.
 
-
 ## Role Based Access in AWS
 
-<img src="images/IAM_Roles.png" width="500px">
-<img src="images/IAM_Role2.png" width="500px">
-
-
+<div style="text-align: center;">
+    <img src="images/IAM_Roles.png" width="800px">
+</div>
+<div style="text-align: center;">
+    <img src="images/IAM_Role2.png" width="800px">
+</div>
 
 **Identity and Access Management (IAM)** best practices for AWS. Here are the key points:
 
@@ -114,3 +113,4 @@ The current content focuses on **authentication** and **authorization** in the c
 
 * **Consider AWS IAM Identity Center:**
     * It allows users to sign in with a single credential for multiple AWS accounts, simplifying user management.
+
