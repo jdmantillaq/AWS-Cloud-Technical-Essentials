@@ -5,13 +5,14 @@ This application will be built in a private network using Amazon Virtual Private
 
 We will use Amazon CloudWatch for monitoring and ensure our application is scalable and fault-tolerant by adding Amazon Elastic Load Balancing and Amazon EC2 Auto Scaling to the diagram. For security and identity management, we will use Amazon Identity and Access Management (IAM). Let's add that too.
 
-![Web App Diagram](images/web_diagram.png)
+
+<img src="images/web_diagram.png" width="500px">
 
 
 ## Availability Zones (AZs) and Regions
 In AWS, Availability Zones (AZs) and Regions are fundamental concepts for building resilient and scalable applications.
 
-![AZ-Region](images/AZ_Region.png)
+<img src="images/AZ_Region.png" alt="AZ-Region" width="500px">
 
 * Regions: Definition: A Region is a geographical area that contains multiple, isolated locations known as Availability Zones.
 Purpose: Regions allow you to deploy applications closer to your users to reduce latency and meet regulatory requirements.
@@ -39,7 +40,8 @@ Example: `us-east-1a`, `us-east-1b`, `us-east-1c` (all within the us-east-1 Regi
 
 When you begin working with the AWS Cloud, managing security and compliance is a shared responsibility between AWS and you.
 
-![shared_responsability_model](images/shared_security_model.png)
+<img src="images/shared_security_model.png" width="500px">
+
 
 You’re responsible for security in the cloud. So for our EC2 example, you are responsible for tasks like patching the operating systems of your VMs, encrypting data in transit and at rest, configuring firewalls and controlling who has access to these resources and how much access they have.
 
@@ -84,8 +86,9 @@ The current content focuses on **authentication** and **authorization** in the c
 
 ## Role Based Access in AWS
 
-![IAM_Roles](images/IAM_Roles.png)
-![IAM_Role2](images/IAM_Role2.png)
+<img src="images/IAM_Roles.png" width="500px">
+<img src="images/IAM_Role2.png" width="500px">
+
 
 
 **Identity and Access Management (IAM)** best practices for AWS. Here are the key points:
