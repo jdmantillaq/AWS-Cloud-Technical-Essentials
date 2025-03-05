@@ -5,15 +5,17 @@ This application will be built in a private network using Amazon Virtual Private
 
 We will use Amazon CloudWatch for monitoring and ensure our application is scalable and fault-tolerant by adding Amazon Elastic Load Balancing and Amazon EC2 Auto Scaling to the diagram. For security and identity management, we will use Amazon Identity and Access Management (IAM). Let's add that too.
 
+**AWS EC2:** Allows you to host virtual machines.
+
 <div style="text-align: center;">
-    <img src="images/web_diagram.png" width="800px">
+    <img src="images/web_diagram.png" width="730px">
 </div>
 
 ## Availability Zones (AZs) and Regions
 In AWS, Availability Zones (AZs) and Regions are fundamental concepts for building resilient and scalable applications.
 
 <div style="text-align: center;">
-    <img src="images/AZ_Region.png" alt="AZ-Region" width="800px">
+    <img src="images/AZ_Region.png" alt="AZ-Region" width="730px">
 </div>
 
 * Regions: Definition: A Region is a geographical area that contains multiple, isolated locations known as Availability Zones.
@@ -40,7 +42,7 @@ Example: `us-east-1a`, `us-east-1b`, `us-east-1c` (all within the us-east-1 Regi
 When you begin working with the AWS Cloud, managing security and compliance is a shared responsibility between AWS and you.
 
 <div style="text-align: center;">
-    <img src="images/shared_security_model.png" width="800px">
+    <img src="images/shared_security_model.png" width="730px">
 </div>
 
 You’re responsible for security in the cloud. So for our EC2 example, you are responsible for tasks like patching the operating systems of your VMs, encrypting data in transit and at rest, configuring firewalls and controlling who has access to these resources and how much access they have.
@@ -84,10 +86,11 @@ The current content focuses on **authentication** and **authorization** in the c
 ## Role Based Access in AWS
 
 <div style="text-align: center;">
-    <img src="images/IAM_Roles.png" width="800px">
+    <img src="images/IAM_Roles.png" width="730px">
 </div>
+
 <div style="text-align: center;">
-    <img src="images/IAM_Role2.png" width="800px">
+    <img src="images/IAM_Role2.png" width="730px">
 </div>
 
 **Identity and Access Management (IAM)** best practices for AWS. Here are the key points:
@@ -114,3 +117,44 @@ The current content focuses on **authentication** and **authorization** in the c
 * **Consider AWS IAM Identity Center:**
     * It allows users to sign in with a single credential for multiple AWS accounts, simplifying user management.
 
+
+
+## AWS EC2
+
+* AWS EC2: Allows you to host virtual machines.
+* Instance: it is what we call one single virtual machine
+
+
+To recap, we have a new default AMI for EC2 instances called the Amazon Linux 2023 AMI. The videos show us using Amazon Linux 2. Because of changes between these two AMIs the user data script shown in the videos will not run properly on Amazon Linux 2023 based instances. You can either choose Amazon Linux 2 as the AMI when launching the instance, and use the original user data script or you can use the Amazon Linux 2023 AMI and use the updated user data script.
+
+Amazon Linux 2 user data script:
+```
+#!/bin/bash -ex
+wget https://aws-tc-largeobjects.s3-us-west-2.amazonaws.com/DEV-AWS-MO-GCNv2/FlaskApp.zip
+unzip FlaskApp.zip
+cd FlaskApp/
+yum -y install python3 mysql
+pip3 install -r requirements.txt
+amazon-linux-extras install epel
+yum -y install stress
+export PHOTOS_BUCKET=${SUB_PHOTOS_BUCKET}
+export AWS_DEFAULT_REGION=<INSERT REGION HERE>
+export DYNAMO_MODE=on
+FLASK_APP=application.py /usr/local/bin/flask run --host=0.0.0.0 --port=80
+```
+ 
+
+Amazon Linux 2023 user data script:
+```
+#!/bin/bash -ex
+wget https://aws-tc-largeobjects.s3-us-west-2.amazonaws.com/DEV-AWS-MO-GCNv2/FlaskApp.zip
+unzip FlaskApp.zip
+cd FlaskApp/
+yum -y install python3-pip
+pip install -r requirements.txt
+yum -y install stress
+export PHOTOS_BUCKET=${SUB_PHOTOS_BUCKET}
+export AWS_DEFAULT_REGION=<INSERT REGION HERE>
+export DYNAMO_MODE=on
+FLASK_APP=application.py /usr/local/bin/flask run --host=0.0.0.0 --port=80
+```
