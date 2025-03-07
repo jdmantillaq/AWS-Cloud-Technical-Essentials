@@ -47,5 +47,5 @@ AMIs can be reused to create new instances with the same configurations, saving 
  ## Amazon EC2 Instance Lifecycle
 
  <div style="text-align: center;">
-    <img src="images/Instance_life_cicle.png" width="600px">
+    <img src="images/Instance_lifecycle.png" width="600px">
 </div>
