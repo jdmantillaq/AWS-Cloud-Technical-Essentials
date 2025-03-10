@@ -177,8 +177,26 @@ Networking Basics: Similar to sending a letter, networking requires:
 ### Amazon VPC
 
 - The VPC has an **internet gateway** and four subnets (two public and two private) across two availability zones.
--** Route tables** are essential for directing internet traffic to the correct subnets. They contain rules (routes) that determine where network traffic is directed. The route table acts like a set of instructions that tells traffic (data) how to get to the right place inside that room.
-- When a new VPC is created, AWS automatically generates a **main route table** that allows local traffic between subnets.
+- **Route tables** are essential for directing internet traffic to the correct subnets. They contain rules (routes) that determine where network traffic is directed. The route table acts like a set of instructions that tells traffic (data) how to get to the right place inside that room
+
+#### The Main Route Table
+When a new VPC is created, AWS automatically generates a **main route table** that allows local traffic between subnets.
+<p align="center">
+<img src="images/route_table.png" width="650px">
+</p> 
+There are two main parts to this route table.
+
+- The destination, which is a range of IP addresses where you want your traffic to go. In the example of sending a letter, you need a destination to route the letter to the appropriate place. The same is true for routing traffic. In this case, the destination is the IP range of our VPC network.
+
+- The target, which is the connection through which to send the traffic. In this case, the traffic is routed through the local VPC network.
+VPC_Routing
+
+#### Custom Route Tables
+
+While the main route table controls the routing for your VPC, you may want to be more granular about how you route your traffic for specific subnets. For example, your application may consist of a frontend and a database. You can create separate subnets for these resources and provide different routes for each of them.
+
+If you associate a custom route table with a subnet, the subnet will use it instead of the main route table. By default, each custom route table you create will have the local route already inside it, allowing communication to flow between all resources and subnets inside the VPC. 
+
 - To provide public access to a subnet, a custom route table must be created with a route to the internet gateway.
 
 <p align="center">
@@ -187,21 +205,61 @@ Networking Basics: Similar to sending a letter, networking requires:
 
 ### Secure Your Network with Amazon VPC Security
 
-#### Network ACLs:
+#### Network ACLs (Network Access Control List):
 
 Network ACLs are like the security gates at the entrance of a neighborhood. They control what kind of traffic can come in and go out of your subnet, which is a smaller section of your VPC. By default, these gates are wide open, allowing all traffic. However, you can customize them to only allow specific types of traffic, like HTTPS, which is used for secure web browsing. Just remember, if you let traffic in, you also need to allow the corresponding traffic out, because these gates don’t remember past actions—they treat each request independently.
 - Act as a firewall at the subnet level.
 - Control what traffic can enter and leave the subnet.
 - By default, they allow all traffic but can be customized to restrict specific types (e.g., only allowing HTTPS).
 - They are **stateless**, meaning you must set rules for both inbound and outbound traffic.
+
+
+
 #### Security Groups:
 Security Groups are like the security guards at the front door of a specific house (or EC2 instance). They are more flexible and remember if a connection was initiated from inside or outside. By default, they block all incoming traffic but allow all outgoing traffic. If you want your house (EC2 instance) to accept visitors (like web traffic), you need to tell the guard to let them in by opening specific doors (inbound ports) for HTTP and HTTPS traffic.
+<p align="center">
+    <img src="images/security_groups.png" width="650px">
+</p> 
+
+
+
 - Function as firewalls at the EC2 instance level.
 - Block all inbound traffic by default but allow all outbound traffic.
 - You must create inbound rules to allow specific traffic (e.g., HTTP and HTTPS).
-T- hey are **stateful**, meaning they remember the connection and allow responses without needing additional rules.
-
+- They are **stateful**, meaning they remember the connection and allow responses without needing additional rules.
 
 <p align="center">
     <img src="images/Security_VPC.png" width="650px">
 </p> 
+
+
+*Example:*
+This example allows you to define three tiers and isolate each tier with the security group rules you define. In this case, you only allow internet traffic to the web tier over HTTPS, Web Tier to Application Tier over HTTP, and Application tier to Database tier over MySQL. This is different from traditional on-premises environments, in which you isolate groups of resources via VLAN configuration. In AWS, security groups allow you to achieve the same isolation without tying it to your network.
+<p align="center">
+    <img src="images/security_group_diagram_example.png" width="500px">
+</p> 
+
+### Hybrid Connectivity with AWS
+
+When we talk about connecting different parts of an application that are spread out between AWS (Amazon Web Services) and a local data center, we are discussing a **hybrid model**. Imagine you have a restaurant (your local data center) and a delivery service (AWS). Some of your ingredients are stored in the restaurant, while others are kept in a warehouse (AWS). You need a reliable way to get those ingredients from the warehouse to your restaurant.
+
+To connect your restaurant to the warehouse, you can use a **VPN (Virtual Private Network)**. Think of it as a secure delivery truck that transports your ingredients safely. There are two types of VPNs:
+- **Site-to-Site VPN:** This is like a big truck that connects your restaurant directly to the warehouse, allowing for a steady flow of ingredients.
+- **Client VPN:** This is more like a small delivery van that allows your staff to access the warehouse from their homes or laptops when they need to pick up supplies.
+
+Additionally, there's **AWS Direct Connect**, which is like having a private road that goes straight from your restaurant to the warehouse. This road is faster and more reliable than regular streets (the public internet), ensuring that your ingredients arrive without delays or traffic jams.
+
+### Common network troubleshooting steps for Amazon VPC
+
+List of configurations you should check if you ever have a public EC2 instance with a web application that is not loading as expected.
+
+1. Internet Gateway: Ensure an Internet Gateway is attached to your VPC.
+2. Route Tables: Verify the route table has a route to 0.0.0.0/0 pointing to the Internet Gateway.
+3. Security Groups: Check inbound rules for HTTP (port 80) and/or HTTPS (port 443) traffic. Also, verify that outbound rules allow traffic to leave the instance.
+4. Network Access Control Lists (NACLs): Ensure they allow inbound and outbound traffic for HTTP and HTTPS.
+5. Public IP Address: Confirm the EC2 instance has a public IP assigned.
+6. HTTP vs HTTPS: Make sure the application is accessed via the correct protocol.
+7. User Data Script: Verify that any user data script has run successfully. Check the instance logs (/var/log/cloud-init.log or /var/log/cloud-init-output.log) for any errors that may have occurred during the execution of the user data script.
+8. Permissions: Verify the permissions and roles attached to your EC2 instance. Ensure the instance has the necessary IAM roles and policies to access any required AWS services, such as S3, DynamoDB, or RDS.
+9. Personal Network Permissions: Ensure your network does not block access to the public IP.
+10. Application: Ensure that your application code is correctly deployed and running. Check the application's logs to diagnose any runtime errors. Also, make sure the web server (e.g., Apache, Nginx) is installed and running.
