@@ -170,6 +170,38 @@ Networking Basics: Similar to sending a letter, networking requires:
     - Internet Gateway: Connects your VPC to the internet, similar to a modem, and is highly available.
     - Virtual Private Gateway: Connects your VPC to another private network, allowing for an encrypted VPN connection
 
-    <p align="center">
+<p align="center">
     <img src="images/AWS_VPC.png" width="500px">
 </p>
+
+### Amazon VPC
+
+- The VPC has an **internet gateway** and four subnets (two public and two private) across two availability zones.
+-** Route tables** are essential for directing internet traffic to the correct subnets. They contain rules (routes) that determine where network traffic is directed. The route table acts like a set of instructions that tells traffic (data) how to get to the right place inside that room.
+- When a new VPC is created, AWS automatically generates a **main route table** that allows local traffic between subnets.
+- To provide public access to a subnet, a custom route table must be created with a route to the internet gateway.
+
+<p align="center">
+    <img src="images/VPC_Routing.png" width="650px">
+</p> 
+
+### Secure Your Network with Amazon VPC Security
+
+#### Network ACLs:
+
+Network ACLs are like the security gates at the entrance of a neighborhood. They control what kind of traffic can come in and go out of your subnet, which is a smaller section of your VPC. By default, these gates are wide open, allowing all traffic. However, you can customize them to only allow specific types of traffic, like HTTPS, which is used for secure web browsing. Just remember, if you let traffic in, you also need to allow the corresponding traffic out, because these gates don’t remember past actions—they treat each request independently.
+- Act as a firewall at the subnet level.
+- Control what traffic can enter and leave the subnet.
+- By default, they allow all traffic but can be customized to restrict specific types (e.g., only allowing HTTPS).
+- They are **stateless**, meaning you must set rules for both inbound and outbound traffic.
+#### Security Groups:
+Security Groups are like the security guards at the front door of a specific house (or EC2 instance). They are more flexible and remember if a connection was initiated from inside or outside. By default, they block all incoming traffic but allow all outgoing traffic. If you want your house (EC2 instance) to accept visitors (like web traffic), you need to tell the guard to let them in by opening specific doors (inbound ports) for HTTP and HTTPS traffic.
+- Function as firewalls at the EC2 instance level.
+- Block all inbound traffic by default but allow all outbound traffic.
+- You must create inbound rules to allow specific traffic (e.g., HTTP and HTTPS).
+T- hey are **stateful**, meaning they remember the connection and allow responses without needing additional rules.
+
+
+<p align="center">
+    <img src="images/Security_VPC.png" width="650px">
+</p> 
