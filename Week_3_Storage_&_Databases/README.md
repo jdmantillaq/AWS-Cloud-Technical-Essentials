@@ -3,9 +3,20 @@
 
 ### Storage Types on AWS
 
-**Block Storage vs. Object Storage:**
+- **File Storage:**
+    - Organizes files in a hierarchical structure (like folders).
+    - Ideal for centralized access and sharing among multiple computers.
+    - Common use cases include large content repositories and development environments.
+- **Block Storage:**
+    - Splits files into fixed-size chunks called blocks, each with its own address.
+    - Allows for efficient retrieval and modification of data.
+    - Optimized for high-performance workloads, such as databases.
+- **Object Storage:**
+    - Stores data as objects in a flat structure, each with a unique identifier.
+    - Easier to scale and suitable for large datasets and unstructured files.
+    - Changing data requires updating the entire object.
 
-- There are two main types of storage:
+**Block Storage vs. Object Storage:**
     - **Block Storage:** Files are split into fixed-size chunks (blocks). This allows for easy updates, as you can change just the block that needs modification.
     - **Object Storage:** Each file is treated as a single unit. To change a file, the entire file must be updated, which can be less efficient for frequent changes.
 
