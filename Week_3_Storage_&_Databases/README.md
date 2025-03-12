@@ -23,3 +23,17 @@
 - Usage Recommendations:
     - Object Storage is suitable for static data (like photos) that is accessed often but modified rarely.
     - Block Storage is better for frequently updated data or high transaction rates (like application files).
+
+### Amazon EC2 Instance Storage and Amazon Elastic Block Store
+
+- **Block Storage Types:**
+    - Instance Store:
+        - Directly attached storage to the physical server.
+        - Fast access but data is lost if the instance is stopped or terminated.
+    - Amazon Elastic Block Store (EBS):
+        - Network-attached storage that persists even if the EC2 instance is stopped or terminated.
+        - Allows multiple EBS volumes to be attached to a single instance.
+        - Supports EBS Multi-Attach for attaching to multiple instances simultaneously.
+- **Data Backup:**
+    - EBS volumes can be backed up using snapshots, which are incremental backups stored redundantly.
+
