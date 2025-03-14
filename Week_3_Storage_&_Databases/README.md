@@ -37,3 +37,27 @@
 - **Data Backup:**
     - EBS volumes can be backed up using snapshots, which are incremental backups stored redundantly.
 
+
+**Amazon Elastic Block Store (EBS)**
+- Definition: A block-level storage device that can be attached to an EC2 instance.
+
+- Characteristics:
+    - Persistent Storage: Data remains even if the instance is stopped or terminated.
+    Volume Types: Includes SSDs (for high performance) and HDDs (for cost-effective storage).
+    - Scaling: Volumes can be resized or additional volumes can be attached to an instance.
+
+- EBS Use Cases
+    - Operating systems (boot volumes)
+    - Databases (transactional reads/writes)
+    - Enterprise applications (business-critical applications)
+
+- Benefits of EBS
+    - High Availability: Automatically replicated within its Availability Zone.
+    - Data Encryption: Supports encryption for security.
+    - Flexibility: Allows on-the-fly changes to volume type and size.
+    - Backups: EBS snapshots provide incremental backups stored in Amazon S3.
+
+
+ ### Object Storage with Amazon S3
+
+ 
