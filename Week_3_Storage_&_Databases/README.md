@@ -50,6 +50,7 @@
     - Operating systems (boot volumes)
     - Databases (transactional reads/writes)
     - Enterprise applications (business-critical applications)
+    - Databases (SQL )
 
 - Benefits of EBS
     - High Availability: Automatically replicated within its Availability Zone.
@@ -95,3 +96,46 @@
 8. Amazon S3 Outposts:Amazon S3 on Outposts delivers object storage to your on-premises AWS Outposts environment.
 
 **Lifecycle Management:** You can automate the transition of objects between storage classes and set expiration policies to manage data efficiently. For example, you might choose to transition objects to S3 Standard-IA storage class 30 days after you created them, or archive objects to the S3 Glacier storage class one year after creating them.
+
+
+
+### Choose the Right Storage Service
+
+* **Amazon EC2 Instance Store:**
+    * Think of it as a temporary hard drive that is built into a computer (EC2 instance).
+    * It's great for storing things that change a lot, like a workspace for a project.
+    * However, if the computer shuts down, you lose everything on this hard drive.
+
+* **Amazon EBS (Elastic Block Store):**
+    * This is like a regular hard drive that you can attach to your computer.
+    * It keeps your data safe even if the computer is turned off or crashes.
+    * You can choose between two types:
+    * SSD: Fast and good for things like databases.
+    * HDD: Slower but better for large amounts of data that don’t change often.
+
+* **Amazon S3 (Simple Storage Service):**
+    * Imagine a big online storage locker where you can keep files like photos, videos, or backups.
+    * You only pay for the space you use, and it’s very reliable.
+    * It’s perfect for things that don’t change often, like storing a website or archives.
+
+* **Amazon EFS (Elastic File System) and Amazon FSx:**
+    * These are like shared folders that multiple computers can access at the same time.
+    * **EFS:** Works like a network drive for Linux systems.
+    * **FSx:** Works like a network drive for Windows systems.
+    * They are useful when you need to share files between different computers.
+
+
+## 2. Databases on AWS
+
+### Amazon Relational Database Service (RDS)
+ 
+**Amazon RDS Overview:** Amazon RDS (Relational Database Service) allows you to create and manage relational databases in the cloud, reducing the operational burden of traditional database management. It supports various database engines, including commercial (Oracle, SQL Server), open source (MySQL, PostgreSQL, MariaDB), and cloud-native (Amazon Aurora).
+
+**DB Instances:** A DB instance is the compute portion that runs the database engine. It can contain multiple databases and uses Amazon Elastic Block Store (EBS) for storage. There are three instance families: Standard, Memory Optimized, and Burstable Performance.
+
+**VPC and Security:** When creating a DB instance, you select a Virtual Private Cloud (VPC) and configure subnets for security. Network access control lists (ACLs) and security groups help manage traffic to the database.
+
+**Backup Options:** Amazon RDS offers automatic backups (enabled by default) and manual snapshots. Automated backups allow point-in-time recovery, while manual snapshots can be retained longer than 35 days.
+
+**Multi-AZ Configuration:** Enabling Multi-AZ creates a redundant copy of the database in another Availability Zone (AZ) for improved availability and automatic failover in case of issues.
+
