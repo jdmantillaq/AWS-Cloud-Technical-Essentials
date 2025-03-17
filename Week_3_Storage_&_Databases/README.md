@@ -140,7 +140,7 @@
 **Multi-AZ Configuration:** Enabling Multi-AZ creates a redundant copy of the database in another Availability Zone (AZ) for improved availability and automatic failover in case of issues.
 
 <p align="center">
-    <img src="images/RDS.png" width="500px">
+    <img src="images/RDS.png" width="700px">
 </p>
 
 
@@ -150,7 +150,7 @@
 Amazon RDS: Traditionally used for relational databases, but may not be suitable for simple applications like an employee directory.
 
 <p align="center">
-    <img src="images/Dynamo1.png" width="500px">
+    <img src="images/Dynamo1.png" width="700px">
 </p>
 
 * **Amazon DynamoDB:** A NoSQL database ideal for key-value pairs or document data, offering millisecond latency and usage-based pricing, making it a better fit for simple lookup tables.
@@ -174,13 +174,13 @@ The emphasis is on using the best tool for the job to simplify database manageme
     * **Items:** Groups of attributes uniquely identifiable within a table.
     * **Attributes:** Fundamental data elements that make up items (e.g., PersonID, LastName).
     <p align="center">
-    <img src="images/Dynamo2.png" width="500px">
+    <img src="images/Dynamo2.png" width="700px">
     </p>
 
 * **Security:** Offers encryption at rest for sensitive data protection.
 
 <p align="center">
-    <img src="images/Dynamo3.png" width="500px">
+    <img src="images/Dynamo3.png" width="700px">
 </p>
 
 
