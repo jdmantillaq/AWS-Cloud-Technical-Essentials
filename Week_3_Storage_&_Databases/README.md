@@ -60,4 +60,38 @@
 
  ### Object Storage with Amazon S3
 
- 
+**Amazon S3 Overview:** Amazon S3 is an object storage service that allows you to store and retrieve data from anywhere on the web. It uses a flat structure to store data as objects, which consist of files and metadata.
+
+**Buckets:** Objects are stored in containers called buckets. You must create a bucket before uploading any objects, specifying a unique bucket name and an AWS Region.
+
+<p align="center">
+    <img src="images/s3_identifier.png" width="500px">
+</p>
+
+**Durability and Availability:** Amazon S3 provides high durability (99.999999999%) and availability (99.99%) by redundantly storing objects across multiple devices and Availability Zones.
+
+**Access Management:** S3 resources are private by default. You can manage access using IAM policies and S3 bucket policies to define permissions for users and resources.
+
+**Encryption:** S3 supports encryption for data at rest and in transit, using server-side and client-side encryption methods.
+
+**Versioning:** S3 allows you to enable versioning to keep multiple versions of an object, preventing accidental overwrites and deletions.
+
+**Storage Classes:** There are several storage classes in S3, including Standard, Intelligent-Tiering, and Glacier, allowing you to optimize costs based on access patterns.
+
+1. Amazon S3 Standard: This is considered general purpose storage for cloud applications, dynamic websites, content distribution, mobile and gaming applications, and big data analytics.
+
+2. Amazon S3 Intelligent-Tiering: This tier is useful if your data has unknown or changing access patterns. S3 Intelligent-Tiering stores objects in two tiers, a frequent access tier and an infrequent access tier. Amazon S3 monitors access patterns of your data, and automatically moves your data to the most cost-effective storage tier based on frequency of access.
+
+3. Amazon S3 Standard-Infrequent Access (S3 Standard-IA): S3 Standard-IA is for data that is accessed less frequently, but requires rapid access when needed. S3 Standard-IA offers the high durability, high throughput, and low latency of S3 Standard, with a low per-GB storage price and per-GB retrieval fee. This storage tier is ideal if you want to store long-term backups, disaster recovery files, and so on.
+
+4. Amazon S3 One Zone-Infrequent Access (S3 One Zone-IA): Unlike other S3 storage classes which store data in a minimum of three Availability Zones (AZs), S3 One Zone-IA stores data in a single AZ and costs 20% less than S3 Standard-IA. S3 One Zone-IA is ideal for customers who want a lower-cost option for infrequently accessed data but do not require the availability and resilience of S3 Standard or S3 Standard-IA. It’s a good choice for storing secondary backup copies of on-premises data or easily re-creatable data.
+
+5. Amazon S3 Glacier Instant Retrieval: Amazon S3 Glacier Instant Retrieval is an archive storage class that delivers the lowest-cost storage for long-lived data that is rarely accessed and requires retrieval in milliseconds.
+
+6. Amazon S3 Glacier Flexible Retrieval:S3 Glacier Flexible Retrieval delivers low-cost storage, up to 10% lower cost (than S3 Glacier Instant Retrieval), for archive data that is accessed 1—2 times per year and is retrieved asynchronously.
+
+7. Amazon S3 Glacier Deep Archive: S3 Glacier Deep Archive is Amazon S3’s lowest-cost storage class and supports long-term retention and digital preservation for data that may be accessed once or twice in a year. It is designed for customers—particularly those in highly regulated industries, such as the Financial Services, Healthcare, and Public Sectors—that retain data sets for 7 to 10 years or longer to meet regulatory compliance requirements.
+
+8. Amazon S3 Outposts:Amazon S3 on Outposts delivers object storage to your on-premises AWS Outposts environment.
+
+**Lifecycle Management:** You can automate the transition of objects between storage classes and set expiration policies to manage data efficiently. For example, you might choose to transition objects to S3 Standard-IA storage class 30 days after you created them, or archive objects to the S3 Glacier storage class one year after creating them.
