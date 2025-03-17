@@ -139,3 +139,55 @@
 
 **Multi-AZ Configuration:** Enabling Multi-AZ creates a redundant copy of the database in another Availability Zone (AZ) for improved availability and automatic failover in case of issues.
 
+<p align="center">
+    <img src="images/RDS.png" width="500px">
+</p>
+
+
+### Purpose Built Databases on AWS
+
+* **No one-size-fits-all database:** Different databases serve different purposes, and it's essential to select one that fits your use case.
+Amazon RDS: Traditionally used for relational databases, but may not be suitable for simple applications like an employee directory.
+
+<p align="center">
+    <img src="images/Dynamo1.png" width="500px">
+</p>
+
+* **Amazon DynamoDB:** A NoSQL database ideal for key-value pairs or document data, offering millisecond latency and usage-based pricing, making it a better fit for simple lookup tables.
+* Other AWS database offerings:
+    * **Amazon DocumentDB** for content management systems.
+    * **Amazon Neptune** for social networks and recommendation engines.
+    * **Amazon QLDB** for immutable ledgers, suitable for industries requiring audit trails.
+
+The emphasis is on using the best tool for the job to simplify database management and focus on application value.
+
+
+### Amazon DynamoDB
+
+**Amazon DynamoDB** is a fully managed NoSQL database service that provides fast and predictable performance with seamless scalability. DynamoDB lets you offload the administrative burdens of operating and scaling a distributed database so that you don't have to worry about hardware provisioning, setup and configuration, replication, software patching, or cluster scaling
+
+
+* **Administrative Ease:** Offloads tasks like hardware provisioning, setup, replication, and scaling.
+* **Data Storage:** Allows creation of tables to store and retrieve any amount of data, with the ability to scale throughput capacity without downtime.
+* Core Components:
+    * **Tables:** Collections of items (e.g., a "People" table for contact information).
+    * **Items:** Groups of attributes uniquely identifiable within a table.
+    * **Attributes:** Fundamental data elements that make up items (e.g., PersonID, LastName).
+    <p align="center">
+    <img src="images/Dynamo2.png" width="500px">
+    </p>
+
+* **Security:** Offers encryption at rest for sensitive data protection.
+
+<p align="center">
+    <img src="images/Dynamo3.png" width="500px">
+</p>
+
+
+### AWS Database Services
+
+AWS has a variety of different database options for different use cases. Use the table below to get a quick look at the AWS database portfolio.
+
+<p align="center">
+    <img src="images/Databases.png" width="700px">
+</p>
